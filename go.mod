@@ -1,4 +1,4 @@
-module json-mapping
+module github.com/taxueqinyin/json-mapping
 
 go 1.18
 
