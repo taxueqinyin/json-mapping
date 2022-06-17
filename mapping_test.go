@@ -8,7 +8,7 @@ import (
 var jsonStr = `
 {
     "name":"音",
-	"data":["sd","hp","cg"],
+	"data":["sd","hp","cg","sb"],
     "baseInfo":{
         "address":"福建省",
         "age":12,
