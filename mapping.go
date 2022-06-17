@@ -33,10 +33,7 @@ func MappingStruct(jsn []byte, src any) error {
 	parsed := gjson.Parse(string(jsn))
 	var err error
 	//尝试自带库解析
-	err = json.Unmarshal(jsn, src)
-	if err != nil {
-		return err
-	}
+	_ = json.Unmarshal(jsn, src)
 	srcType := reflect.TypeOf(src)
 	for srcType.Kind() == reflect.Ptr {
 		srcType = srcType.Elem()
@@ -72,5 +69,5 @@ func MappingStruct(jsn []byte, src any) error {
 			continue
 		}
 	}
-	return nil
+	return err
 }

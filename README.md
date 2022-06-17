@@ -2,7 +2,7 @@ JsonMapping是一个Go包，提供了一个从json数据快速映射到结构体
 
 
 
-# 入门
+# 使用
 
 ## 安装
 
@@ -15,10 +15,12 @@ $ go get -u github.com/taxueqinyin/json-mapping
 ## 映射到结构体
 
 ```go
+
 var jsonStr = `
 {
     "name":"音",
 	"data":["sd","hp","cg","sb"],
+	"bug":"bug",
     "baseInfo":{
         "address":"福建省",
         "age":12,
@@ -41,12 +43,13 @@ var jsonStr = `
 }
 `
 
-type testStruct struct{
-    Name1  string `JsonMapping:"name"`
-	Date   string `JsonMapping:"data.2"`
-	Age    int    `JsonMapping:"baseInfo.age"`
-	Answer string `JsonMapping:"baseInfo.first.second.thi*.1"`
-	Four   int    `JsonMapping:"baseInfo.f.s.t.fou*"`
+type TestStruct struct {
+Name1  string `JsonMapping:"name"`
+Data   string `json:"data" JsonMapping:"data.2"`
+Bug    string `json:"bug"`
+Age    int    `JsonMapping:"baseInfo.age"`
+Answer string `JsonMapping:"baseInfo.first.second.thi*.1"`
+Four   int    `JsonMapping:"baseInfo.f.s.t.fou*"`
 }
 
 func main(){
@@ -59,7 +62,7 @@ func main(){
 这将打印
 
 ```go
-{音 cg 12 answer 44444444444}
+{音 cg bug 12 answer 44444444444}
 ```
 
 

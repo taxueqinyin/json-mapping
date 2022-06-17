@@ -9,6 +9,7 @@ var jsonStr = `
 {
     "name":"音",
 	"data":["sd","hp","cg","sb"],
+	"bug":"bug",
     "baseInfo":{
         "address":"福建省",
         "age":12,
@@ -33,7 +34,8 @@ var jsonStr = `
 
 type TestStruct struct {
 	Name1  string `JsonMapping:"name"`
-	Date   string `JsonMapping:"data.2"`
+	Data   string `json:"data" JsonMapping:"data.2"`
+	Bug    string `json:"bug"`
 	Age    int    `JsonMapping:"baseInfo.age"`
 	Answer string `JsonMapping:"baseInfo.first.second.thi*.1"`
 	Four   int    `JsonMapping:"baseInfo.f.s.t.fou*"`
