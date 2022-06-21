@@ -1,4 +1,4 @@
-English|[简体中文](https://github.com/taxueqinyin/json-mapping/blob/main/README.md)
+English|[简体中文](https://github.com/taxueqinyin/json-mapping/blob/main/README_cn.md)
 
 
 
