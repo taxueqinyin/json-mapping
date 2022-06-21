@@ -1,22 +1,22 @@
-English|[简体中文](https://github.com/taxueqinyin/json-mapping/blob/main/README.md)
+[English](https://github.com/taxueqinyin/json-mapping/blob/main/README.md)|简体中文
 
 
 
-JsonMapping is a Go package that provides a method to quickly map json data to a structure. You only need to fill in the json path corresponding to JsonMaping in the tag of the structure, and you can directly map different levels of json to the structure. You can also distinguish different jsons by setting labels to map different jsons to the same structure type, so that the json data returned by the same type of functional interfaces provided by different manufacturers can be accepted by the same structure, realizing the generalization of the interface structure.
+JsonMapping是一个Go包，提供了一个将json数据快速映射到结构体的方法，只需要在结构体的tag里填写JsonMaping对应的json路径，就可以把不同层级的json直接对应到结构体中。还可以通过设置label来区分不同json，以将不同json数据映射到同一个结构体类型，使得不同厂商提供的同类型功能接口返回的json数据可以用同一个结构体承接，实现接口结构体的通用化
 
 
 
-# Getting Started
+# 使用
 
-## Installing
+## 安装
 
-To start using json-mapping , install Go and run `go get`:
+要开始使用json-mapping ，请安装Go并运行go get:
 
 ```go
 $ go get -u github.com/taxueqinyin/json-mapping
 ```
 
-## map to struct
+## 映射到结构体
 
 ```go
 var (
@@ -102,7 +102,7 @@ func main() {
 
 ```
 
-This will print:
+这将打印
 
 ```go
 baidu =  {name-baidu cg bug 24 answer 44444444444}
@@ -113,12 +113,10 @@ ali =  {name-ali sd aliDeBug 18 dsanswer 3344868}
 
 
 
-## Path Syntax
+## 路径语法
 
-The package uses GJSON, so it also uses GJSON syntax. For details, please refer to [GJSON ](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)
+包使用了GJSON，所以也采用GJSON语法，详情可参阅[GJSON 语法](https://github.com/tidwall/gjson/blob/master/SYNTAX.md)
 
+## 标签语法 
 
-
-## Label Syntax
-
-Each label is separated by ";", and the label uses ":" to correspond to the label and path, such as label:path
+每个label用";"隔开，label使用":"来对应label和路径,例如label:path
