@@ -60,24 +60,23 @@ var (
 )
 
 type TestStruct struct {
-	Name1  string `JsonMapping:"baidu:name;ali:random.1"`
-	Data   string `json:"data" JsonMapping:"baidu:data.2;ali:a.b"`
-	Bug    string `json:"bug"`
-	Age    int    `JsonMapping:"baidu:baseInfo.baidu_age;ali:a.age"`
-	Answer string `JsonMapping:"baidu:baseInfo.first.second.thi*.1;ali:data.test.0.ds.ds"`
-	Four   int    `JsonMapping:"baidu:baseInfo.f.s.t.fou*;ali:data.ffff"`
+	Name1  string   `JsonMapping:"baidu:name;ali:random.1"`
+	Data   string   `json:"data" JsonMapping:"baidu:data.2;ali:a.b"`
+	Bug    string   `json:"bug"`
+	Age    int      `JsonMapping:"baidu:baseInfo.baidu_age;ali:a.age"`
+	Answer string   `JsonMapping:"baidu:baseInfo.first.second.thi*.1;ali:data.test.0.ds.ds"`
+	Four   int      `JsonMapping:"baidu:baseInfo.f.s.t.fou*;ali:data.ffff"`
+	Slice  []string `JsonMapping:"baidu:data;ali:random"`
 }
 
 func TestMappingStruct(t *testing.T) {
 	testBaidu := TestStruct{}
 	testAli := TestStruct{}
 	var err error
-	for i := 0; i < 500000; i++ {
-		err = MappingStruct("baidu", []byte(jsonBaidu), &testBaidu)
-		if err != nil {
-			fmt.Println("baidu err", err)
-			return
-		}
+	err = MappingStruct("baidu", []byte(jsonBaidu), &testBaidu)
+	if err != nil {
+		fmt.Println("baidu err", err)
+		return
 	}
 	err = MappingStruct("ali", []byte(jsonAli), &testAli)
 	if err != nil {
@@ -86,4 +85,14 @@ func TestMappingStruct(t *testing.T) {
 	}
 	fmt.Println("baidu = ", testBaidu)
 	fmt.Println("ali = ", testAli)
+}
+
+func BenchmarkMappingStruct(b *testing.B) {
+	//b.N = 100000
+	for i := 0; i < b.N; i++ {
+		testBaidu := TestStruct{}
+		testAli := TestStruct{}
+		_ = MappingStruct("baidu", []byte(jsonBaidu), &testBaidu)
+		_ = MappingStruct("ali", []byte(jsonAli), &testAli)
+	}
 }
